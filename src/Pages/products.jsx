@@ -1,3 +1,4 @@
+import Counter from "../components/Fragments/Counter";
 import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProducts";
 
@@ -31,7 +32,7 @@ const ProductsPage = () => {
     <>
       <div className="flex justify-end h-20 bg-blue-600 text-white items-center px-10">
         {email}
-        <Button classname="ml-3 bg-black w-1/6" onClick={handleLogout}>
+        <Button classname="ml-3 bg-black w-[120px]" onClick={handleLogout}>
           Log out
         </Button>
       </div>
@@ -43,6 +44,10 @@ const ProductsPage = () => {
             <CardProduct.Footer price={product.price}></CardProduct.Footer>
           </CardProduct>
         ))}
+      </div>
+
+      <div className="w-100 flex justify-center">
+        <Counter></Counter>
       </div>
     </>
   );
