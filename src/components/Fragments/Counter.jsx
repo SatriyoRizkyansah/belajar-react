@@ -8,6 +8,18 @@ class Counter extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({ count: 0 });
+    console.log("ComponentDidMount");
+  }
+
+  componentDidUpdate() {
+    console.log("ComponentDidUpdate");
+    if (this.state.count === 10) {
+      this.setState({ count: 0 });
+    }
+  }
+
   render() {
     return (
       <div className="flex items-center">
