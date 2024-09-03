@@ -10,18 +10,22 @@ const Header = (props) => {
   const { image } = props;
   return (
     <a href="">
-      <img src={image} alt="" className="p-8 rounded-t-lg w-full" />
+      <img src={image} alt="" className="p-8 rounded-t-lg w-full h-60 object-cover" />
     </a>
   );
 };
 
 const Body = (props) => {
   const { children, name } = props;
+
+  const convChildren = typeof children === "string" ? children : String(children);
+  const convName = typeof name === "string" ? name : String(name);
+
   return (
     <div className="px-5 pb-8 h-full">
       <a href="">
-        <h5 className="text-xl font-semibold tracking-tight text-white">{name}</h5>
-        <p className="text-s text-white">{children}</p>
+        <h5 className="text-xl font-semibold tracking-tight text-white">{convName.substring(0, 20)} ... </h5>
+        <p className="text-s text-white">{convChildren.substring(0, 100)}</p>
       </a>
     </div>
   );
