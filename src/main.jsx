@@ -7,6 +7,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductsPage from "./Pages/products";
 import ProfilePage from "./Pages/profile";
+import DetailProductPage from "./Pages/detailProducts";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage></ProfilePage>,
+  },
+  {
+    path: "/product/:id",
+    element: <DetailProductPage></DetailProductPage>,
   },
 ]);
 

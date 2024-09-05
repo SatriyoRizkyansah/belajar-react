@@ -3,7 +3,7 @@ import Counter from "../components/Fragments/Counter";
 import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProducts";
 import { useEffect, useRef, useState } from "react";
-import getProducts from "../services/product.service";
+import { getProducts } from "../services/product.service";
 import { getUsername } from "../services/auth.service";
 import { useLogin } from "../hooks/useLogin";
 
@@ -75,7 +75,7 @@ const ProductsPage = () => {
           {products.length > 0 &&
             products.map((product) => (
               <CardProduct key={product.id}>
-                <CardProduct.Header image={product.image}></CardProduct.Header>
+                <CardProduct.Header image={product.image} id={product.id}></CardProduct.Header>
                 <CardProduct.Body name={product.title}>{product.description}</CardProduct.Body>
                 <CardProduct.Footer price={product.price} id={product.id} handleAddToCart={handleAddToCart}></CardProduct.Footer>
               </CardProduct>
