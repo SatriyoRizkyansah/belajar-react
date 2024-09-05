@@ -15,6 +15,7 @@ const FormLogin = () => {
       username: event.target.username.value,
       password: event.target.password.value,
     };
+
     login(data, (status, res) => {
       if (status) {
         localStorage.setItem("token", res);

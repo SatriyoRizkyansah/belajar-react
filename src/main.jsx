@@ -6,6 +6,7 @@ import ErrorPage from "./Pages/404";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductsPage from "./Pages/products";
+import ProfilePage from "./Pages/profile";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <ProductsPage></ProductsPage>,
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage></ProfilePage>,
   },
 ]);
 
