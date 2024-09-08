@@ -8,8 +8,17 @@ const cartReducer = createReducer([], (builder) => {
   });
 });
 
+const login = createAction("CREATE_SESSION");
+
+const loginReducer = createReducer({ status: false }, (builder) => {
+  builder.addCase(login, (state, action) => {
+    state.status = true;
+  });
+});
+
 const store = configureStore({
   reducer: {
+    login: loginReducer,
     cart: cartReducer,
   },
 });
@@ -19,4 +28,5 @@ store.subscribe(() => {
 });
 
 store.dispatch(addToCart({ id: 1, qty: 20 }));
-// console.log(store.getState());
+store.dispatch(addToCart({ id: 2, qty: 10 }));
+store.dispatch(login());
