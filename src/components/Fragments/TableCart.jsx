@@ -1,3 +1,4 @@
+import { useTotalPrice, useTotalPriceDispatch } from "../../context/TotalPriceContext";
 import { DarkMode } from "../../context/DarkMode";
 import { useContext } from "react";
 import { useRef, useEffect, useState } from "react";
@@ -6,9 +7,10 @@ import { useSelector } from "react-redux";
 const TableCart = (props) => {
   const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
 
-  const { products = [] } = props; // Default to an empty array if products is undefined
-  const cart = useSelector((state) => state.cart?.data || []); // Default to an empty array if cart is undefined
-  const [totalPrice, setTotalPrice] = useState(0);
+  const { products = [] } = props;
+  const cart = useSelector((state) => state.cart?.data || []);
+  const dispatch = useTotalPriceDispatch();
+  const { total } = useTotalPrice();
 
   useEffect(() => {
     if (products.length > 0 && cart.length > 0) {
@@ -16,7 +18,12 @@ const TableCart = (props) => {
         const product = products.find((product) => product.id === item.id);
         return acc + product.price * item.qty;
       }, 0);
-      setTotalPrice(sum);
+      dispatch({
+        type: "UPDATE",
+        payload: {
+          total: sum,
+        },
+      });
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart, products]);
@@ -74,7 +81,7 @@ const TableCart = (props) => {
         <td>
           <b>
             $.{" "}
-            {totalPrice.toLocaleString("id-ID", {
+            {total.toLocaleString("id-ID", {
               styles: "currency",
               currency: "USD",
             })}
