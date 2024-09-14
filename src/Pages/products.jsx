@@ -8,9 +8,13 @@ import { getUsername } from "../services/auth.service";
 import { useLogin } from "../hooks/useLogin";
 import TableCart from "../components/Fragments/TableCart";
 import Navbar from "../components/Layouts/Navbar";
+import { DarkMode } from "../context/DarkMode";
+import { Children, useContext } from "react";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
+  const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
+
   useLogin();
 
   useEffect(() => {
@@ -22,7 +26,7 @@ const ProductsPage = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="flex justify-center py-10">
+      <div className={`flex justify-center py-10 ${isDarkMode ? "bg-slate-900" : "bg-slate-0"}`}>
         <div className="w-4/6 flex flex-wrap">
           {products.length > 0 &&
             products.map((product) => (
